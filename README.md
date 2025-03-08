@@ -92,3 +92,9 @@ npm run lint:fix
 ### VS Code Extension
 
 For the best experience, install the [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension in VS Code.
+
+## Features
+
+### Routing
+
+This project uses React Router for navigation. The router configuration is in `src/App.tsx`.
