@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
-import { IconButton } from '../ui/icon-button';
+import { Avatar, IconButton } from '@/components/ui';
 import { RefreshIcon, UploadIcon } from '@/assets/icons';
-import { Avatar } from '@/components/ui';
 
 interface AvatarSelectorProps {
   value: string;
