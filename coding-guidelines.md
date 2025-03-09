@@ -6,10 +6,24 @@ This document outlines the coding standards and best practices for the Expense T
 
 ### Files and Directories
 
-- **Kebab Case**: All file and directory names should use kebab-case (lowercase with hyphens).
+- **Kebab Case with Type Suffix**: All file names should use kebab-case (lowercase with hyphens) and include the file type as a suffix.
 
-  - ✅ `expense-list.tsx`, `auth-context.tsx`, `use-expenses.ts`
+  - ✅ `expense-list.comp.tsx`, `auth-context.context.tsx`, `use-expenses.hook.ts`
+  - ✅ `dashboard.page.tsx`, `login.page.tsx`, `transaction.form.tsx`
   - ❌ `ExpenseList.tsx`, `authContext.tsx`, `useExpenses.ts`
+  - ❌ `dashboard-page.tsx`, `login-page.tsx`
+
+- **Common Type Suffixes**:
+
+  - `.page.tsx` - For page components
+  - `.comp.tsx` - For regular components
+  - `.form.tsx` - For form components
+  - `.layout.tsx` - For layout components
+  - `.hook.ts` - For custom hooks
+  - `.context.tsx` - For React contexts
+  - `.util.ts` - For utility functions
+  - `.type.ts` - For TypeScript types and interfaces
+  - `.service.ts` - For services
 
 - **File Extensions**:
   - React components: `.tsx`
@@ -33,11 +47,23 @@ This document outlines the coding standards and best practices for the Expense T
   - ✅ `const API_BASE_URL = 'https://api.example.com'`
   - ❌ `const apiBaseUrl = 'https://api.example.com'`
 
-### CSS Classes
+### CSS and Styling
 
-- **Kebab Case** for CSS class names:
-  - ✅ `expense-item`, `nav-bar`, `form-container`
-  - ❌ `expenseItem`, `NavBar`, `formContainer`
+- Use Tailwind CSS classes for all styling needs
+
+  - ✅ `flex items-center justify-between`
+  - ✅ `bg-blue-500 hover:bg-blue-600 text-white`
+  - ❌ Custom CSS classes or separate CSS files
+
+- When custom CSS is absolutely required:
+  1. Add custom styles through Tailwind's configuration in `tailwind.config.js`
+  2. If that's not possible, provide detailed documentation explaining:
+     - Why Tailwind classes couldn't solve the problem
+     - What specific browser/platform issue required custom CSS
+     - What alternatives were considered
+  3. Use **Kebab Case** for any custom CSS class names:
+     - ✅ `custom-animation`, `special-layout`
+     - ❌ `customAnimation`, `SpecialLayout`
 
 ## Code Formatting
 
