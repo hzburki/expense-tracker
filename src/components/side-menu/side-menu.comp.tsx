@@ -1,10 +1,20 @@
 import { Link } from 'react-router-dom';
-import { Avatar } from '@/components/ui';
+import { Profile } from './profile.comp';
+import {
+  DashboardIcon,
+  AccountsIcon,
+  ExpensesIcon,
+  AnalyticsIcon,
+  ImportsIcon,
+  ReportsIcon,
+  BudgetsIcon,
+  TemplatesIcon,
+} from '@/assets/icons';
 
 interface MenuItem {
   label: string;
   path: string;
-  icon: string;
+  icon: React.ReactNode;
 }
 
 interface SideMenuProps {
@@ -13,23 +23,52 @@ interface SideMenuProps {
 }
 
 const menuItems: MenuItem[] = [
-  { label: 'Dashboard', path: '/dashboard', icon: '📊' },
-  { label: 'Expenses', path: '/expenses', icon: '💰' },
-  { label: 'Categories', path: '/categories', icon: '🏷️' },
-  { label: 'Reports', path: '/reports', icon: '📈' },
-  { label: 'Settings', path: '/settings', icon: '⚙️' },
+  {
+    label: 'Dashboard',
+    path: '/',
+    icon: <DashboardIcon className="h-5 w-5" />,
+  },
+  {
+    label: 'Accounts',
+    path: '/accounts',
+    icon: <AccountsIcon className="h-5 w-5" />,
+  },
+  {
+    label: 'Expenses',
+    path: '/expenses',
+    icon: <ExpensesIcon className="h-5 w-5" />,
+  },
+  {
+    label: 'Analytics',
+    path: '/analytics',
+    icon: <AnalyticsIcon className="h-5 w-5" />,
+  },
+  {
+    label: 'Goals',
+    path: '/goals',
+    icon: <ReportsIcon className="h-5 w-5" />,
+  },
+  {
+    label: 'Budgets',
+    path: '/budgets',
+    icon: <BudgetsIcon className="h-5 w-5" />,
+  },
+  {
+    label: 'Templates',
+    path: '/templates',
+    icon: <TemplatesIcon className="h-5 w-5" />,
+  },
+  {
+    label: 'Imports',
+    path: '/imports',
+    icon: <ImportsIcon className="h-5 w-5" />,
+  },
 ];
 
-export const SideMenu = ({ userName = 'John Doe', avatarUrl }: SideMenuProps) => {
+export const SideMenu = ({ userName, avatarUrl }: SideMenuProps) => {
   return (
     <aside className="h-full w-[80vw] border-r border-gray-200 bg-white md:w-64">
-      {/* Profile Section - Only visible on mobile */}
-      <div className="border-b border-gray-200 bg-gray-50 px-4 py-6 md:hidden">
-        <div className="flex flex-col items-center">
-          <Avatar src={avatarUrl} alt={userName} size="lg" className="mb-3" />
-          <span className="text-lg font-medium text-gray-900">{userName}</span>
-        </div>
-      </div>
+      <Profile userName={userName} avatarUrl={avatarUrl} />
 
       {/* Menu Items */}
       <div className="p-4">

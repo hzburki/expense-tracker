@@ -1,13 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Main pages
-import { DashboardPage } from '@/pages/dashboard';
-import { TransactionsPage } from '@/pages/transactions.page';
-import { WalletsPage } from '@/pages/wallets.page';
-import { CategoriesPage } from '@/pages/categories.page';
-import { BudgetsPage } from '@/pages/budgets.page';
-import { GoalsPage } from '@/pages/goals.page';
-import { TransactionFormPage } from '@/pages/transaction.form';
+import {
+  DashboardPage,
+  ExpensesPage,
+  AccountsPage,
+  BudgetsPage,
+  GoalsPage,
+} from '@/pages/dashboard';
+import { CategoriesPage } from '@/pages/settings';
 
 // Auth pages
 import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from './pages/auth';
@@ -20,11 +21,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/transactions',
-    element: <TransactionsPage />,
+    element: <ExpensesPage />,
   },
   {
-    path: '/wallets',
-    element: <WalletsPage />,
+    path: '/accounts',
+    element: <AccountsPage />,
   },
   {
     path: '/categories',
@@ -37,14 +38,6 @@ const router = createBrowserRouter([
   {
     path: '/goals',
     element: <GoalsPage />,
-  },
-  {
-    path: '/transaction/new',
-    element: <TransactionFormPage />,
-  },
-  {
-    path: '/transaction/:id',
-    element: <TransactionFormPage />,
   },
   {
     path: '/login',
