@@ -51,7 +51,7 @@ export const SelectField = <T extends FieldValues>({
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-full items-center justify-between rounded-lg border border-gray-300 bg-white px-4 text-left text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 focus:outline-none"
+            className="flex h-10 w-full cursor-pointer items-center justify-between rounded-lg border border-gray-300 bg-white px-4 text-left text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 focus:outline-none"
           >
             <span className={selectedOption ? 'text-gray-900' : 'text-gray-500'}>
               {selectedOption?.label || placeholder}
