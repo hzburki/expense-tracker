@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Link } from '@/components/ui/Link';
+import { InputField } from '@/components/ui/input-field';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Link } from '@/components/ui/link';
 import { AuthLayout } from '@/layouts/auth.layout';
-import { AvatarSelector } from '@/components/common/AvatarSelector';
-import { PasswordCriteria } from '@/components/common/PasswordCriteria';
+import { AvatarSelector } from '@/components/common/avatar-selector';
+import { PasswordCriteria } from '@/components/common/password-criteria';
 import { registerSchema, type RegisterFormData } from './register.schema';
 
 export const RegisterPage: React.FC = () => {
@@ -53,14 +53,14 @@ export const RegisterPage: React.FC = () => {
             />
           </div>
 
-          <Input
+          <InputField
             label="Full Name"
             name="name"
             placeholder="Enter your full name"
             register={register}
             error={errors.name?.message}
           />
-          <Input
+          <InputField
             label="Email"
             name="email"
             type="email"
@@ -69,7 +69,7 @@ export const RegisterPage: React.FC = () => {
             error={errors.email?.message}
           />
           <div className="relative">
-            <Input
+            <InputField
               label="Password"
               name="password"
               type="password"
@@ -85,7 +85,7 @@ export const RegisterPage: React.FC = () => {
               className="absolute right-0 left-0"
             />
           </div>
-          <Input
+          <InputField
             label="Confirm Password"
             name="confirmPassword"
             type="password"

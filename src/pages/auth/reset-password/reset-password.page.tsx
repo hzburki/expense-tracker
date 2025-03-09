@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
-import { Input } from '../../../components/ui/Input';
+import { InputField } from '@/components/ui/input-field';
 import { resetPasswordSchema, type ResetPasswordFormData } from './reset-password.schema';
 
 export const ResetPasswordPage: React.FC = () => {
@@ -33,7 +33,7 @@ export const ResetPasswordPage: React.FC = () => {
 
         <div className="rounded-2xl bg-white p-8 shadow-xl">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <Input
+            <InputField
               label="New Password"
               name="password"
               type="password"
@@ -41,7 +41,7 @@ export const ResetPasswordPage: React.FC = () => {
               register={register}
               error={errors.password?.message}
             />
-            <Input
+            <InputField
               label="Confirm New Password"
               name="confirmPassword"
               type="password"

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
-import { Input } from '../../../components/ui/Input';
+import { InputField } from '@/components/ui/input-field';
 import { forgotPasswordSchema, type ForgotPasswordFormData } from './forgot-password.schema';
 
 export const ForgotPasswordPage: React.FC = () => {
@@ -33,7 +33,7 @@ export const ForgotPasswordPage: React.FC = () => {
 
         <div className="rounded-2xl bg-white p-8 shadow-xl">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <Input
+            <InputField
               label="Email"
               name="email"
               type="email"

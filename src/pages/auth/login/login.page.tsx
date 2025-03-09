@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from '../../../components/ui/Input';
-import { Button } from '../../../components/ui/Button';
-import { Card } from '../../../components/ui/Card';
-import { Link } from '../../../components/ui/Link';
-import { AuthLayout } from '../../../layouts/auth.layout';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Link } from '@/components/ui/link';
+import { AuthLayout } from '@/layouts/auth.layout';
 import { loginSchema, type LoginFormData } from './login.schema';
+import { InputField } from '@/components/ui/input-field';
 
 export const LoginPage: React.FC = () => {
   const {
@@ -30,7 +30,7 @@ export const LoginPage: React.FC = () => {
     <AuthLayout title="Welcome Back" subtitle="Please sign in to continue">
       <Card>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <Input
+          <InputField
             label="Email"
             name="email"
             type="email"
@@ -38,7 +38,7 @@ export const LoginPage: React.FC = () => {
             register={register}
             error={errors.email?.message}
           />
-          <Input
+          <InputField
             label="Password"
             name="password"
             type="password"
