@@ -14,7 +14,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
 }) => {
   return (
     <div
-      className={`flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4 ${className}`}
+      className={`flex min-h-screen items-center justify-center bg-gray-100 p-4 ${className}`}
       {...props}
     >
       <div className="w-full max-w-md">

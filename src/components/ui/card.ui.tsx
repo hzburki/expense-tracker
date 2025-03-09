@@ -19,7 +19,7 @@ export const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`rounded-2xl bg-white shadow-xl ${paddingStyles[padding]} ${className}`}
+      className={`overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-900/5 ${paddingStyles[padding]} ${className}`}
       {...props}
     >
       {children}

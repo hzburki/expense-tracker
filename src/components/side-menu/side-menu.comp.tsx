@@ -128,8 +128,8 @@ export const SideMenu = ({ userName, avatarUrl }: SideMenuProps) => {
                       to={item.path}
                       className={`flex items-center rounded-lg px-4 py-4 text-lg transition-all duration-200 md:px-4 md:py-3 md:text-sm ${
                         isActive
-                          ? 'bg-blue-100 font-semibold text-blue-700 shadow-sm'
-                          : 'text-gray-700 hover:bg-gray-100'
+                          ? 'bg-blue-100 font-semibold text-blue-700 shadow-sm ring-1 ring-blue-400/20'
+                          : 'text-gray-700 hover:bg-gray-50'
                       }`}
                     >
                       <span className={`mr-4 md:mr-3 ${isActive ? 'text-blue-600' : ''}`}>

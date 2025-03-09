@@ -1,4 +1,5 @@
 import { FullScreenLayout } from '@/layouts';
+import { Card } from '@/components/ui';
 
 export const ProfilePage = () => {
   return (
@@ -12,7 +13,7 @@ export const ProfilePage = () => {
         </div>
 
         {/* Profile Section */}
-        <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5">
+        <Card>
           <div className="flex items-center gap-6">
             {/* Avatar */}
             <div className="h-20 w-20 overflow-hidden rounded-full bg-gray-100">
@@ -58,7 +59,7 @@ export const ProfilePage = () => {
               />
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </FullScreenLayout>
   );
