@@ -2,139 +2,128 @@
 
 This document outlines the coding standards and best practices for the Expense Tracker project.
 
+## Project Structure
+
+### Directory Organization
+
+- **Pages Directory**: Each page should have its own directory under the `@pages` folder:
+  ```
+  src/
+    ├── pages/
+    │   ├── auth/
+    │   │   ├── login/
+    │   │   ├── register/
+    │   │   └── forgot-password/
+    │   ├── dashboard/
+    │   └── settings/
+    ├── components/
+    │   └── ui/
+    ├── layouts/
+    │   ├── auth.layout.tsx
+    │   └── dashboard.layout.tsx
+    ├── hooks/
+    ├── contexts/
+    ├── services/
+    └── utils/
+  ```
+
+### Page Structure
+
+Each page directory should follow this structure:
+
+```
+profile/
+  ├── profile.page.tsx         # Main page component
+  ├── profile.schema.ts        # Form validation and types
+  ├── profile-form.comp.tsx    # Page-specific components
+  ├── profile-stats.comp.tsx   # Page-specific components
+  └── index.ts                 # Exports
+```
+
 ## Naming Conventions
 
-### Files and Directories
+### File Naming
 
-- **Page Component Structure**: Each page should have its own directory under the `@pages` folder, as shown in this example:
+- **Use Kebab Case**: All file names should use kebab-case (lowercase with hyphens)
+- **Include Type Suffix**: Files must include their type as a suffix
+- **Examples**:
+  - ✅ `expense-list.comp.tsx`
+  - ✅ `auth-context.context.tsx`
+  - ✅ `use-expenses.hook.ts`
+  - ❌ `ExpenseList.tsx`
+  - ❌ `authContext.tsx`
 
-  ```
-  profile/
-    ├── profile.page.tsx         # The main page component that brings everything together
-    ├── update-profile.form.tsx  # Separate form component for better organization
-    ├── update-profile.schema.ts # Form validation and type definitions
-    ├── async-input.comp.tsx     # Reusable input with async validation (e.g., username availability)
-    ├── avatar.comp.tsx          # Component to handle profile picture operations
-    └── index.ts                 # Single export point for all components
-  ```
+### Type Suffixes
 
-  This structure keeps related code organized and encapsulated:
+- `.page.tsx` - Page components
+- `.layout.tsx` - Layout components
+- `.comp.tsx` - Regular components
+- `.form.tsx` - Form components
+- `.schema.ts` - Form/data schemas
+- `.hook.ts` - Custom hooks
+- `.context.tsx` - React contexts
+- `.service.ts` - Services
+- `.util.ts` - Utility functions
+- `.type.ts` - TypeScript types/interfaces
+- `.test.tsx` - Test files
 
-  - The main page component (`profile.page.tsx`) orchestrates all the pieces
-  - Complex forms are separated (`update-profile.form.tsx`) for maintainability
-  - Schemas (`update-profile.schema.ts`) define form validation rules and types
-  - Specialized components (`async-input.comp.tsx`, `avatar.comp.tsx`) handle specific features
-  - The `index.ts` file provides a clean way to import components from other parts of the app
+### Component Naming
 
-- **Page Component Names**: All page components must end with 'Page' (e.g., `LoginPage`, `DashboardPage`, `ProfilePage`)
+- **Page Components**: Must end with 'Page'
 
-- **Exports**: Never use default exports. Always use named exports for all components, functions, and other exports.
+  - ✅ `LoginPage`, `DashboardPage`, `ProfilePage`
+  - ❌ `Login`, `Dashboard`, `Profile`
 
-- **Kebab Case with Type Suffix**: All file names should use kebab-case (lowercase with hyphens) and include the file type as a suffix.
-
-  - ✅ `expense-list.comp.tsx`, `auth-context.context.tsx`, `use-expenses.hook.ts`
-  - ✅ `dashboard.page.tsx`, `login.page.tsx`, `transaction.form.tsx`
-  - ❌ `ExpenseList.tsx`, `authContext.tsx`, `useExpenses.ts`
-  - ❌ `dashboard-page.tsx`, `login-page.tsx`
-
-- **Common Type Suffixes**:
-
-  - `.page.tsx` - For page components
-  - `.comp.tsx` - For regular components
-  - `.form.tsx` - For form components
-  - `.layout.tsx` - For layout components
-  - `.hook.ts` - For custom hooks
-  - `.context.tsx` - For React contexts
-  - `.util.ts` - For utility functions
-  - `.type.ts` - For TypeScript types and interfaces
-  - `.service.ts` - For services
-  - `.schema.ts` - For form/data schemas
-
-- **File Extensions**:
-  - React components: `.tsx`
-  - TypeScript files: `.ts`
-  - CSS/SCSS files: `.css`/`.scss`
-  - Test files: `.test.tsx` or `.test.ts`
-
-### Components and Functions
-
-- **PascalCase** for React components:
+- **React Components**: Use PascalCase
 
   - ✅ `function ExpenseList() { ... }`
   - ❌ `function expenseList() { ... }`
 
-- **camelCase** for functions, variables, and instances:
+- **Functions and Variables**: Use camelCase
 
   - ✅ `const calculateTotal = () => { ... }`
   - ❌ `const CalculateTotal = () => { ... }`
 
-- **UPPER_SNAKE_CASE** for constants:
+- **Constants**: Use UPPER_SNAKE_CASE
   - ✅ `const API_BASE_URL = 'https://api.example.com'`
   - ❌ `const apiBaseUrl = 'https://api.example.com'`
 
-### CSS and Styling
+## Code Organization
 
-- Use Tailwind CSS classes for all styling needs
+### Exports
 
-  - ✅ `flex items-center justify-between`
-  - ✅ `bg-blue-500 hover:bg-blue-600 text-white`
-  - ❌ Custom CSS classes or separate CSS files
+- **No Default Exports**: Always use named exports
 
-- When custom CSS is absolutely required:
-  1. Add custom styles through Tailwind's configuration in `tailwind.config.js`
-  2. If that's not possible, provide detailed documentation explaining:
-     - Why Tailwind classes couldn't solve the problem
-     - What specific browser/platform issue required custom CSS
-     - What alternatives were considered
-  3. Use **Kebab Case** for any custom CSS class names:
-     - ✅ `custom-animation`, `special-layout`
-     - ❌ `customAnimation`, `SpecialLayout`
+  ```typescript
+  // ✅ Good
+  export const Button: React.FC = () => { ... }
 
-## Code Formatting
+  // ❌ Bad
+  export default Button
+  ```
 
-- All code is automatically formatted using Prettier on save and pre-commit.
-- The Prettier configuration is defined in `.prettierrc`.
+### File Extensions
 
-## TypeScript
+- `.tsx` - React components
+- `.ts` - TypeScript files
+- `.css`/`.scss` - Stylesheets
+- `.test.tsx` - Component tests
+- `.test.ts` - Unit tests
 
-- Always use proper TypeScript types instead of `any`.
-- Create interfaces or types for component props.
-- Use TypeScript's built-in types when possible (e.g., `Array<T>` or `T[]`, `Record<K, V>`).
+## CSS and Styling
 
-## React Best Practices
-
-- Use functional components with hooks instead of class components.
-- Keep components small and focused on a single responsibility.
-- Extract reusable logic into custom hooks.
-- Use React context for state that needs to be accessed by many components.
-
-## Imports
-
-- Group imports in the following order, separated by a blank line:
-  1. External libraries (React, React Router, etc.)
-  2. Internal modules (components, hooks, utils, etc.)
-  3. Assets (images, styles, etc.)
-
-```tsx
-// External libraries
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-// Internal modules
-import { ExpenseType } from '../types/expense-types';
-import { formatCurrency } from '../utils/format-utils';
-
-// Assets
-import './expense-item.css';
-```
+- Use Tailwind CSS classes for styling
+- Follow utility-first principles
+- Group related classes logically
+- Extract common patterns into components
 
 ## Testing
 
-There will be no tests for now. Testing guidelines will be added in the future when testing is implemented.
+Testing guidelines will be added when testing is implemented.
 
 ## Git Workflow
 
-- Write clear, concise commit messages.
-- Keep commits focused on a single change.
-- Use feature branches for new features or bug fixes.
-- Squash commits before merging to main branch.
+- Write clear, concise commit messages
+- Keep commits focused on single changes
+- Use feature branches
+- Squash commits before merging to main
