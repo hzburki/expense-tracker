@@ -10,24 +10,31 @@ interface DashboardLayoutProps {
 export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  // TODO: Replace with actual user data from auth context
+  const user = {
+    name: 'John Doe',
+    avatarUrl: undefined, // Add user avatar URL when available
+  };
+
   return (
-    <div className="h-screen overflow-hidden bg-gray-50">
+    <div className="flex h-screen flex-col">
       {/* Navbar - Fixed at top */}
       <Navbar onMenuClick={() => setIsDrawerOpen(true)} />
 
-      <div className="flex h-[calc(100vh-4rem)]">
+      {/* Content Area */}
+      <div className="flex flex-1 overflow-hidden">
         {/* Side Menu - Hidden on mobile, visible on md breakpoint and up */}
         <div className="hidden md:block">
-          <SideMenu />
+          <SideMenu userName={user.name} avatarUrl={user.avatarUrl} />
         </div>
 
         {/* Mobile Drawer */}
         <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-          <SideMenu />
+          <SideMenu userName={user.name} avatarUrl={user.avatarUrl} />
         </Drawer>
 
-        {/* Main Content - Full width on mobile, adjusted for sidebar on md and up */}
-        <main className="flex-1 overflow-auto pt-[4rem] md:pl-[16rem]">{children}</main>
+        {/* Main Content */}
+        <main className="flex-1 overflow-y-auto bg-gray-50 pt-[4rem]">{children}</main>
       </div>
     </div>
   );
