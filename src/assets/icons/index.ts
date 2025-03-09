@@ -19,3 +19,5 @@ export { RefreshIcon } from './refresh.icon';
 export { TagIcon } from './tag.icon';
 export { CurrencyIcon } from './currency.icon';
 export { LabelIcon } from './label.icon';
+export { ChevronDownIcon } from './chevron-down.icon';
+export { CalendarIcon } from './calendar.icon';

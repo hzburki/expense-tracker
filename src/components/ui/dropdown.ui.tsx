@@ -39,7 +39,7 @@ export const Dropdown = ({
 
       {isOpen && (
         <div
-          className={`absolute mt-2 w-48 rounded-md border border-gray-200 bg-white py-1 shadow-lg ${
+          className={`absolute z-50 mt-1 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg ${
             align === 'right' ? 'right-0' : 'left-0'
           } ${className}`}
         >
@@ -60,7 +60,7 @@ export const DropdownItem = ({
   className?: string;
 }) => (
   <button
-    className={`block w-full cursor-pointer px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 ${className}`}
+    className={`block w-full cursor-pointer px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 ${className}`}
     onClick={onClick}
   >
     {children}

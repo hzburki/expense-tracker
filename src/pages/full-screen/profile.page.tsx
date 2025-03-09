@@ -1,6 +1,60 @@
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FullScreenLayout } from '@/layouts';
+import { Card, InputField, Button, DOBField } from '@/components/ui';
+import { SelectField } from '@/components/ui/select-field.ui';
+import { AvatarSelector } from '@/components/common';
+import { z } from 'zod';
+
+const profileSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Invalid email address'),
+  avatarSeed: z.string(),
+  avatarStyle: z.string(),
+  gender: z.enum(['male', 'female', 'other']).nullable(),
+  dateOfBirth: z.string().nullable(),
+});
+
+type ProfileFormData = z.infer<typeof profileSchema>;
+
+const genderOptions = [
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' },
+  { value: 'other', label: 'Other' },
+];
 
 export const ProfilePage = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors, isSubmitting },
+  } = useForm<ProfileFormData>({
+    resolver: zodResolver(profileSchema),
+    defaultValues: {
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      avatarSeed: Math.random().toString(36).substring(7),
+      avatarStyle: 'avataaars',
+      gender: null,
+      dateOfBirth: null,
+    },
+  });
+
+  const avatarSeed = watch('avatarSeed');
+  const avatarStyle = watch('avatarStyle');
+  const gender = watch('gender');
+
+  const onSubmit = async (data: ProfileFormData) => {
+    try {
+      // TODO: Implement profile update logic
+      console.log(data);
+    } catch (error) {
+      console.error('Profile update failed:', error);
+    }
+  };
+
   return (
     <FullScreenLayout>
       <div className="mx-auto max-w-3xl space-y-8">
@@ -11,54 +65,62 @@ export const ProfilePage = () => {
           </p>
         </div>
 
-        {/* Profile Section */}
-        <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5">
-          <div className="flex items-center gap-6">
-            {/* Avatar */}
-            <div className="h-20 w-20 overflow-hidden rounded-full bg-gray-100">
-              <img
-                src="https://avatars.githubusercontent.com/u/12345678?v=4"
-                alt="Profile"
-                className="h-full w-full object-cover"
+        <Card overflow="visible">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <div className="flex justify-center">
+              <AvatarSelector
+                value={avatarSeed}
+                style={avatarStyle}
+                onChange={(seed, style) => {
+                  setValue('avatarSeed', seed);
+                  setValue('avatarStyle', style);
+                }}
               />
             </div>
 
-            {/* User Info */}
-            <div>
-              <h2 className="text-xl font-medium text-gray-900">John Doe</h2>
-              <p className="text-sm text-gray-500">john.doe@example.com</p>
-            </div>
-          </div>
+            <InputField
+              label="Full Name"
+              name="name"
+              placeholder="Enter your full name"
+              register={register}
+              error={errors.name?.message}
+            />
 
-          {/* Form */}
-          <div className="mt-8 grid gap-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                defaultValue="John Doe"
+            <InputField
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              register={register}
+              error={errors.email?.message}
+            />
+
+            <div className="grid gap-6 sm:grid-cols-2">
+              <SelectField
+                label="Gender"
+                name="gender"
+                options={genderOptions}
+                register={register}
+                setValue={setValue}
+                value={gender}
+                error={errors.gender?.message}
+                placeholder="Select gender"
+              />
+
+              <DOBField
+                name="dateOfBirth"
+                register={register}
+                error={errors.dateOfBirth?.message}
               />
             </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                defaultValue="john.doe@example.com"
-              />
+            <div className="flex justify-end">
+              <Button type="submit" isLoading={isSubmitting}>
+                Save Changes
+              </Button>
             </div>
-          </div>
-        </div>
+          </form>
+        </Card>
       </div>
     </FullScreenLayout>
   );
