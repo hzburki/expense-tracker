@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Link } from 'react-router-dom';
-import { Input } from '../../../components/ui/Input';
-import { registerSchema, type RegisterFormData } from './regsiter.schema';
+import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Link } from '@/components/ui/Link';
+import { AuthLayout } from '@/layouts/auth.layout';
+import { AvatarSelector } from '@/components/common/AvatarSelector';
+import { PasswordCriteria } from '@/components/common/PasswordCriteria';
+import { registerSchema, type RegisterFormData } from './register.schema';
 
 export const RegisterPage: React.FC = () => {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      avatarSeed: Math.random().toString(36).substring(7),
+      avatarStyle: 'avataaars',
+    },
   });
+
+  const [isFocused, setIsFocused] = useState(false);
+  const avatarSeed = watch('avatarSeed');
+  const avatarStyle = watch('avatarStyle');
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
@@ -24,30 +39,36 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
-      <div className="w-full max-w-md">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
-          <p className="mt-2 text-gray-600">Join us to start tracking your expenses</p>
-        </div>
+    <AuthLayout title="Create Account" subtitle="Join us to start tracking your expenses">
+      <Card>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div className="flex justify-center">
+            <AvatarSelector
+              value={avatarSeed}
+              style={avatarStyle}
+              onChange={(seed, style) => {
+                setValue('avatarSeed', seed);
+                setValue('avatarStyle', style);
+              }}
+            />
+          </div>
 
-        <div className="rounded-2xl bg-white p-8 shadow-xl">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <Input
-              label="Full Name"
-              name="name"
-              placeholder="Enter your full name"
-              register={register}
-              error={errors.name?.message}
-            />
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Enter your email"
-              register={register}
-              error={errors.email?.message}
-            />
+          <Input
+            label="Full Name"
+            name="name"
+            placeholder="Enter your full name"
+            register={register}
+            error={errors.name?.message}
+          />
+          <Input
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            register={register}
+            error={errors.email?.message}
+          />
+          <div className="relative">
             <Input
               label="Password"
               name="password"
@@ -55,36 +76,34 @@ export const RegisterPage: React.FC = () => {
               placeholder="Choose a strong password"
               register={register}
               error={errors.password?.message}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             />
-            <Input
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm your password"
-              register={register}
-              error={errors.confirmPassword?.message}
+            <PasswordCriteria
+              password={watch('password') || ''}
+              isVisible={isFocused}
+              className="absolute right-0 left-0"
             />
+          </div>
+          <Input
+            label="Confirm Password"
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm your password"
+            register={register}
+            error={errors.confirmPassword?.message}
+          />
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full rounded-xl bg-blue-600 px-4 py-3 font-medium text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {isSubmitting ? 'Creating Account...' : 'Create Account'}
-            </button>
+          <Button type="submit" fullWidth isLoading={isSubmitting}>
+            Create Account
+          </Button>
 
-            <div className="mt-6 text-center">
-              <span className="text-gray-600">Already have an account? </span>
-              <Link
-                to="/login"
-                className="font-medium text-blue-600 transition-colors hover:text-blue-800"
-              >
-                Sign In
-              </Link>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+          <div className="text-center">
+            <span className="text-gray-600">Already have an account? </span>
+            <Link to="/login">Sign In</Link>
+          </div>
+        </form>
+      </Card>
+    </AuthLayout>
   );
 };
