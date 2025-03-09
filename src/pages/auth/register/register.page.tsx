@@ -24,48 +24,66 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-lightGray flex min-h-screen items-center justify-center">
-      <div className="shadow-card w-full max-w-md rounded-2xl bg-white p-8">
-        <h2 className="mb-6 text-center text-2xl font-bold">Create Account</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input label="Full Name" name="name" register={register} error={errors.name?.message} />
-          <Input
-            label="Email"
-            name="email"
-            type="email"
-            register={register}
-            error={errors.email?.message}
-          />
-          <Input
-            label="Password"
-            name="password"
-            type="password"
-            register={register}
-            error={errors.password?.message}
-          />
-          <Input
-            label="Confirm Password"
-            name="confirmPassword"
-            type="password"
-            register={register}
-            error={errors.confirmPassword?.message}
-          />
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+      <div className="w-full max-w-md">
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
+          <p className="mt-2 text-gray-600">Join us to start tracking your expenses</p>
+        </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-primary hover:bg-primary/90 w-full rounded-xl py-2 text-white transition-colors disabled:opacity-50"
-          >
-            {isSubmitting ? 'Creating Account...' : 'Create Account'}
-          </button>
+        <div className="rounded-2xl bg-white p-8 shadow-xl">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <Input
+              label="Full Name"
+              name="name"
+              placeholder="Enter your full name"
+              register={register}
+              error={errors.name?.message}
+            />
+            <Input
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              register={register}
+              error={errors.email?.message}
+            />
+            <Input
+              label="Password"
+              name="password"
+              type="password"
+              placeholder="Choose a strong password"
+              register={register}
+              error={errors.password?.message}
+            />
+            <Input
+              label="Confirm Password"
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm your password"
+              register={register}
+              error={errors.confirmPassword?.message}
+            />
 
-          <p className="text-darkGray text-center text-sm">
-            Already have an account?{' '}
-            <Link to="/login" className="text-info hover:underline">
-              Sign In
-            </Link>
-          </p>
-        </form>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full rounded-xl bg-blue-600 px-4 py-3 font-medium text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isSubmitting ? 'Creating Account...' : 'Create Account'}
+            </button>
+
+            <div className="mt-6 text-center">
+              <span className="text-gray-600">Already have an account? </span>
+              <Link
+                to="/login"
+                className="font-medium text-blue-600 transition-colors hover:text-blue-800"
+              >
+                Sign In
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

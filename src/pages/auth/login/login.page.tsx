@@ -24,46 +24,60 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-lightGray flex min-h-screen items-center justify-center">
-      <div className="shadow-card w-full max-w-md rounded-2xl bg-white p-8">
-        <h2 className="mb-6 text-center text-2xl font-bold">Welcome Back</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input
-            label="Email"
-            name="email"
-            type="email"
-            register={register}
-            error={errors.email?.message}
-          />
-          <Input
-            label="Password"
-            name="password"
-            type="password"
-            register={register}
-            error={errors.password?.message}
-          />
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+      <div className="w-full max-w-md">
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
+          <p className="mt-2 text-gray-600">Please sign in to continue</p>
+        </div>
 
-          <div className="flex justify-end">
-            <Link to="/forgot-password" className="text-info text-sm hover:underline">
-              Forgot Password?
-            </Link>
-          </div>
+        <div className="rounded-2xl bg-white p-8 shadow-xl">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <Input
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              register={register}
+              error={errors.email?.message}
+            />
+            <Input
+              label="Password"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              register={register}
+              error={errors.password?.message}
+            />
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-primary hover:bg-primary/90 w-full rounded-xl py-2 text-white transition-colors disabled:opacity-50"
-          >
-            {isSubmitting ? 'Signing in...' : 'Sign In'}
-          </button>
+            <div className="flex justify-end">
+              <Link
+                to="/forgot-password"
+                className="text-sm text-blue-600 transition-colors hover:text-blue-800"
+              >
+                Forgot Password?
+              </Link>
+            </div>
 
-          <div className="text-center">
-            <span>Don't have an account? </span>
-            <Link to="/register" className="text-info hover:underline">
-              Register
-            </Link>
-          </div>
-        </form>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full rounded-xl bg-blue-600 px-4 py-3 font-medium text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isSubmitting ? 'Signing in...' : 'Sign In'}
+            </button>
+
+            <div className="mt-6 text-center">
+              <span className="text-gray-600">Don't have an account? </span>
+              <Link
+                to="/register"
+                className="font-medium text-blue-600 transition-colors hover:text-blue-800"
+              >
+                Register
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
