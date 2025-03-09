@@ -136,7 +136,7 @@ import { RefreshIcon } from '@/assets/icons';
 - `.hook.ts` - Custom hooks
 - `.context.tsx` - React contexts
 - `.service.ts` - Services
-- `.util.ts` - Utility functions
+- `.utils.ts` - Utility functions (MUST be in @utils directory)
 - `.type.ts` - TypeScript types/interfaces
 - `.test.tsx` - Test files
 - `.icon.tsx` - Icon components
@@ -230,3 +230,22 @@ Testing guidelines will be added when testing is implemented.
 - Keep commits focused on single changes
 - Use feature branches
 - Squash commits before merging to main
+
+### Utility Functions
+
+All utility functions must follow these rules:
+
+- Must be placed in the `@utils` directory
+- Must use the `.utils.ts` suffix
+- Must be pure functions with a single responsibility
+- Must be exported through the directory's index.ts
+
+Example structure:
+
+```
+src/utils/
+  ├── format-date.utils.ts
+  ├── calculate-total.utils.ts
+  ├── string-helpers.utils.ts
+  └── index.ts
+```

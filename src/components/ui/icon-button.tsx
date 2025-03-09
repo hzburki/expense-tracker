@@ -1,6 +1,6 @@
 import { Button } from './button';
 import type { ComponentProps } from 'react';
-import { cn } from '@/libs/utils';
+import { cn } from '@/utils';
 
 interface IconButtonProps extends ComponentProps<typeof Button> {
   className?: string;
