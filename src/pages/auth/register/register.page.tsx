@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { InputField } from '@/components/ui/input-field';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Link } from '@/components/ui/link';
-import { AuthLayout } from '@/layouts/auth.layout';
-import { AvatarSelector } from '@/components/common/avatar-selector';
-import { PasswordCriteria } from '@/components/common/password-criteria';
+import { InputField, Button, Card, Link } from '@/components/ui';
+import { AuthLayout } from '@/layouts';
+import { AvatarSelector, PasswordCriteria } from '@/components/common';
 import { registerSchema, type RegisterFormData } from './register.schema';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -33,6 +32,7 @@ export const RegisterPage: React.FC = () => {
     try {
       // TODO: Implement register logic
       console.log(data);
+      navigate('/dashboard');
     } catch (error) {
       console.error('Registration failed:', error);
     }

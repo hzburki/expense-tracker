@@ -1,13 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Main pages
-import { DashboardPage } from './pages/dashboard.page';
-import { TransactionsPage } from './pages/transactions.page';
-import { WalletsPage } from './pages/wallets.page';
-import { CategoriesPage } from './pages/categories.page';
-import { BudgetsPage } from './pages/budgets.page';
-import { GoalsPage } from './pages/goals.page';
-import { TransactionFormPage } from './pages/transaction.form';
+import { DashboardPage } from '@/pages/dashboard';
+import { TransactionsPage } from '@/pages/transactions.page';
+import { WalletsPage } from '@/pages/wallets.page';
+import { CategoriesPage } from '@/pages/categories.page';
+import { BudgetsPage } from '@/pages/budgets.page';
+import { GoalsPage } from '@/pages/goals.page';
+import { TransactionFormPage } from '@/pages/transaction.form';
 
 // Auth pages
 import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from './pages/auth';

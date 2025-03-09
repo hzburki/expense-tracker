@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { IconButton } from '../ui/icon-button';
+import { RefreshIcon, UploadIcon } from '@/assets/icons';
+import { Avatar } from '@/components/ui';
 
 interface AvatarSelectorProps {
   value: string;
@@ -18,6 +20,16 @@ export const AvatarSelector: React.FC<AvatarSelectorProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Using DiceBear library (https://www.dicebear.com) which provides different avatar styles:
+  // - adventurer: Adventurer style avatars
+  // - avataaars: Avatar style similar to Apple's memoji
+  // - bottts: Robot style avatars
+  // - fun-emoji: Emoji style avatars
+  // - pixel-art: Pixel art style avatars
+  //
+  // Random selection:
+  // - Seed: Generated using Math.random().toString(36).substring(7) to create a random string
+  // - Style: Cycles through styles array using modulo operator (currentIndex + 1) % length
   const handleRegenerate = () => {
     const newSeed = Math.random().toString(36).substring(7);
     const currentIndex = STYLES.indexOf(style as (typeof STYLES)[number]);
@@ -39,38 +51,25 @@ export const AvatarSelector: React.FC<AvatarSelectorProps> = ({
   return (
     <div className="flex flex-col items-center space-y-4">
       <div className="group relative">
-        <img
+        <Avatar
           src={`https://api.dicebear.com/7.x/${style}/svg?seed=${value}`}
           alt="Avatar"
-          className="h-24 w-24 rounded-full border-2 border-gray-200"
+          size="lg"
+          className="border-2 border-gray-200"
         />
         <IconButton
           variant="primary"
           onClick={handleRegenerate}
           className="absolute -right-2 -bottom-2"
         >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-            />
-          </svg>
+          <RefreshIcon className="h-4 w-4" />
         </IconButton>
         <IconButton
           variant="primary"
           onClick={handleFileUpload}
           className="absolute -top-2 -right-2"
         >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-            />
-          </svg>
+          <UploadIcon className="h-4 w-4" />
         </IconButton>
         <input
           type="file"

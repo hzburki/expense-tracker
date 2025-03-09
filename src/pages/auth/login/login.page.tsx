@@ -1,14 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Link } from '@/components/ui/link';
-import { AuthLayout } from '@/layouts/auth.layout';
+import { Button, Card, Link, InputField } from '@/components/ui';
+import { AuthLayout } from '@/layouts';
 import { loginSchema, type LoginFormData } from './login.schema';
-import { InputField } from '@/components/ui/input-field';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -21,6 +21,7 @@ export const LoginPage: React.FC = () => {
     try {
       // TODO: Implement login logic
       console.log(data);
+      navigate('/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
     }

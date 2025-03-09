@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
-import { InputField } from '@/components/ui/input-field';
+import { InputField } from '@/components/ui';
 import { resetPasswordSchema, type ResetPasswordFormData } from './reset-password.schema';
 
 export const ResetPasswordPage: React.FC = () => {

@@ -1,6 +1,12 @@
+/* 
+ * IMPORTANT: Files in the public directory are served at the root path.
+ * When referencing files from the public directory, use the root path (/) instead of including 'public' in the path.
+ * WRONG: url('../public/fonts/...')
+ * RIGHT: url('/fonts/...')
+ */
 @font-face {
   font-family: 'Quicksand';
-  src: url('../public/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+  src: url('/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
 }
 
 @import 'tailwindcss';
