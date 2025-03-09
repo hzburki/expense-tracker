@@ -1,4 +1,4 @@
-import { Avatar } from '@/components/ui/avatar.comp';
+import { Avatar } from '@/components/ui/avatar.ui';
 
 interface NavbarTriggerProps {
   onClick: () => void;

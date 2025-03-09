@@ -40,29 +40,46 @@ Example of proper component encapsulation:
 
 ```
 navbar/
-  ├── index.ts              # Only exports Navbar component
-  ├── navbar.comp.tsx       # Main component, used outside
-  ├── navbar-logo.comp.tsx  # Internal component
-  ├── navbar-avatar.comp.tsx # Internal component
-  └── navbar-trigger.comp.tsx # Internal component
+  ├── index.ts                 # Exports only the main Navbar component
+  ├── navbar.comp.tsx          # Main component, used outside
+  ├── navbar-logo.comp.tsx     # Internal component
+  ├── navbar-avatar.comp.tsx     # Internal component
+  └── navbar-trigger.comp.tsx     # Internal component
 
-# index.ts
+# index.ts - Only exports public interface
 export { Navbar } from './navbar.comp';
 
-# Good - Internal component import
+# Inside navbar.comp.tsx - Direct imports for internal components
 import { NavbarLogo } from './navbar-logo.comp';
+import { NavbarAvatar } from './navbar-avatar.comp';
 
-# Bad - Don't export internal components
-❌ export { NavbarLogo } from './navbar-logo.comp';
+# ❌ WRONG - Don't export internal components
+export { NavbarLogo } from './navbar-logo.comp';
 ```
 
-This approach:
+Benefits of this approach:
 
-- Creates clear component boundaries
+- Creates clear boundaries between public and private components
 - Makes it obvious which components are meant for external use
-- Reduces unnecessary exports
-- Improves maintainability
-- Makes refactoring safer
+- Prevents accidental usage of internal components
+- Makes refactoring safer and more maintainable
+- Provides a single source of truth for the public API
+
+This pattern should be followed across all directories:
+
+```
+src/
+  ├── components/
+  │   ├── ui/
+  │   │   ├── index.ts        # Exports all base UI components
+  │   │   └── button.ui.tsx
+  ├── utils/
+  │   ├── index.ts            # Exports all utility functions
+  │   └── format-date.utils.ts
+  └── hooks/
+      ├── index.ts            # Exports all custom hooks
+      └── use-auth.hook.ts
+```
 
 ### Page Structure
 
@@ -128,17 +145,28 @@ import { RefreshIcon } from '@/assets/icons';
 
 ### Type Suffixes
 
+Components:
+
 - `.page.tsx` - Page components
 - `.layout.tsx` - Layout components
 - `.comp.tsx` - Regular components
+- `.ui.tsx` - Base UI components (MUST be in @components/ui directory)
 - `.form.tsx` - Form components
-- `.schema.ts` - Form/data schemas
-- `.hook.ts` - Custom hooks
+
+State & Logic:
+
 - `.context.tsx` - React contexts
+- `.hook.ts` - Custom hooks
 - `.service.ts` - Services
-- `.utils.ts` - Utility functions (MUST be in @utils directory)
+
+Data & Types:
+
+- `.schema.ts` - Form/data schemas
 - `.type.ts` - TypeScript types/interfaces
-- `.test.tsx` - Test files
+- `.utils.ts` - Utility functions (MUST be in @utils directory)
+
+Assets & Tests:
+
 - `.icon.tsx` - Icon components
 
 ### Component Naming
@@ -238,7 +266,6 @@ All utility functions must follow these rules:
 - Must be placed in the `@utils` directory
 - Must use the `.utils.ts` suffix
 - Must be pure functions with a single responsibility
-- Must be exported through the directory's index.ts
 
 Example structure:
 
@@ -247,5 +274,26 @@ src/utils/
   ├── format-date.utils.ts
   ├── calculate-total.utils.ts
   ├── string-helpers.utils.ts
+  └── index.ts
+```
+
+### UI Components
+
+All base UI components must follow these rules:
+
+- Must be placed in the `@components/ui` directory
+- Must use the `.ui.tsx` suffix
+- Must be reusable across the entire application
+- Must be exported through the directory's index.ts
+- Should be the foundation of the component library
+
+Example structure:
+
+```
+src/components/ui/
+  ├── button.ui.tsx
+  ├── input.ui.tsx
+  ├── card.ui.tsx
+  ├── drawer.ui.tsx
   └── index.ts
 ```
