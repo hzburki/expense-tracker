@@ -14,7 +14,8 @@ const dropdownItems = [
   {
     type: 'button',
     label: 'Logout',
-    icon: <LogoutIcon className="mr-2 h-4 w-4" />,
+    icon: <LogoutIcon className="mr-2 h-4 w-4 text-red-500" />,
+    className: 'text-red-600 hover:bg-red-50',
   },
 ];
 
@@ -38,7 +39,7 @@ export const NavbarAvatar = () => {
             </DropdownItem>
           </Link>
         ) : (
-          <DropdownItem key={index} onClick={() => setIsOpen(false)}>
+          <DropdownItem key={index} onClick={() => setIsOpen(false)} className={item.className}>
             <span className="flex items-center">
               {item.icon}
               {item.label}

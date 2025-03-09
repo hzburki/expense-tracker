@@ -1,9 +1,11 @@
-import { DashboardLayout } from '@/layouts/dashboard.layout';
+import { DashboardLayout } from '@/layouts';
 
 export const DashboardPage = () => {
   return (
     <DashboardLayout>
-      <p className="text-2xl font-semibold text-gray-900">Dashboard</p>
+      <div className="p-6">
+        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+      </div>
     </DashboardLayout>
   );
 };

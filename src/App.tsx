@@ -6,9 +6,16 @@ import {
   ExpensesPage,
   AccountsPage,
   BudgetsPage,
+  ImportsPage,
   GoalsPage,
+  AnalyticsPage,
 } from '@/pages/dashboard';
-import { CategoriesPage } from '@/pages/settings';
+
+// Settings pages
+import { CategoriesPage, TemplatesPage, CurrenciesPage, LabelsPage } from '@/pages/settings';
+
+// Full Screen pages
+import { ProfilePage } from '@/pages/full-screen';
 
 // Auth pages
 import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from './pages/auth';
@@ -20,7 +27,7 @@ const router = createBrowserRouter([
     element: <DashboardPage />,
   },
   {
-    path: '/transactions',
+    path: '/expenses',
     element: <ExpensesPage />,
   },
   {
@@ -28,8 +35,8 @@ const router = createBrowserRouter([
     element: <AccountsPage />,
   },
   {
-    path: '/categories',
-    element: <CategoriesPage />,
+    path: '/analytics',
+    element: <AnalyticsPage />,
   },
   {
     path: '/budgets',
@@ -39,6 +46,33 @@ const router = createBrowserRouter([
     path: '/goals',
     element: <GoalsPage />,
   },
+  {
+    path: '/imports',
+    element: <ImportsPage />,
+  },
+  // Full Screen Route
+  {
+    path: '/profile',
+    element: <ProfilePage />,
+  },
+  // Settings Routes
+  {
+    path: '/settings/categories',
+    element: <CategoriesPage />,
+  },
+  {
+    path: '/settings/templates',
+    element: <TemplatesPage />,
+  },
+  {
+    path: '/settings/currencies',
+    element: <CurrenciesPage />,
+  },
+  {
+    path: '/settings/labels',
+    element: <LabelsPage />,
+  },
+  // Auth Routes
   {
     path: '/login',
     element: <LoginPage />,
@@ -57,6 +91,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-export const App: React.FC = () => {
+export const App = () => {
   return <RouterProvider router={router} />;
 };

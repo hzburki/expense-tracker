@@ -1,10 +1,12 @@
 import React from 'react';
+import { DashboardLayout } from '@/layouts';
 
-export const AccountsPage: React.FC = () => {
+export const AccountsPage = () => {
   return (
-    <div className="p-4">
-      <h1 className="mb-4 text-2xl font-bold">Accounts</h1>
-      <p>Manage your different wallets and accounts here.</p>
-    </div>
+    <DashboardLayout>
+      <div className="p-6">
+        <h1 className="text-2xl font-bold text-gray-900">Accounts</h1>
+      </div>
+    </DashboardLayout>
   );
 };

@@ -16,3 +16,6 @@ export { LogoutIcon } from './logout.icon';
 export { ProfileIcon } from './profile.icon';
 export { UploadIcon } from './upload.icon';
 export { RefreshIcon } from './refresh.icon';
+export { TagIcon } from './tag.icon';
+export { CurrencyIcon } from './currency.icon';
+export { LabelIcon } from './label.icon';
