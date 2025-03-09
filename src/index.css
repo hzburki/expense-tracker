@@ -1,1 +1,10 @@
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../public/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+}
+
 @import 'tailwindcss';
+
+@theme {
+  --font-quicksand: Quicksand, sans-serif;
+}

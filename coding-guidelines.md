@@ -6,6 +6,30 @@ This document outlines the coding standards and best practices for the Expense T
 
 ### Files and Directories
 
+- **Page Component Structure**: Each page should have its own directory under the `@pages` folder, as shown in this example:
+
+  ```
+  profile/
+    ├── profile.page.tsx         # The main page component that brings everything together
+    ├── update-profile.form.tsx  # Separate form component for better organization
+    ├── update-profile.schema.ts # Form validation and type definitions
+    ├── async-input.comp.tsx     # Reusable input with async validation (e.g., username availability)
+    ├── avatar.comp.tsx          # Component to handle profile picture operations
+    └── index.ts                 # Single export point for all components
+  ```
+
+  This structure keeps related code organized and encapsulated:
+
+  - The main page component (`profile.page.tsx`) orchestrates all the pieces
+  - Complex forms are separated (`update-profile.form.tsx`) for maintainability
+  - Schemas (`update-profile.schema.ts`) define form validation rules and types
+  - Specialized components (`async-input.comp.tsx`, `avatar.comp.tsx`) handle specific features
+  - The `index.ts` file provides a clean way to import components from other parts of the app
+
+- **Page Component Names**: All page components must end with 'Page' (e.g., `LoginPage`, `DashboardPage`, `ProfilePage`)
+
+- **Exports**: Never use default exports. Always use named exports for all components, functions, and other exports.
+
 - **Kebab Case with Type Suffix**: All file names should use kebab-case (lowercase with hyphens) and include the file type as a suffix.
 
   - ✅ `expense-list.comp.tsx`, `auth-context.context.tsx`, `use-expenses.hook.ts`
@@ -24,6 +48,7 @@ This document outlines the coding standards and best practices for the Expense T
   - `.util.ts` - For utility functions
   - `.type.ts` - For TypeScript types and interfaces
   - `.service.ts` - For services
+  - `.schema.ts` - For form/data schemas
 
 - **File Extensions**:
   - React components: `.tsx`

@@ -1,19 +1,16 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Main pages
-import DashboardPage from './pages/dashboard.page';
-import TransactionsPage from './pages/transactions.page';
-import WalletsPage from './pages/wallets.page';
-import CategoriesPage from './pages/categories.page';
-import BudgetsPage from './pages/budgets.page';
-import GoalsPage from './pages/goals.page';
-import TransactionFormPage from './pages/transaction.form';
+import { DashboardPage } from './pages/dashboard.page';
+import { TransactionsPage } from './pages/transactions.page';
+import { WalletsPage } from './pages/wallets.page';
+import { CategoriesPage } from './pages/categories.page';
+import { BudgetsPage } from './pages/budgets.page';
+import { GoalsPage } from './pages/goals.page';
+import { TransactionFormPage } from './pages/transaction.form';
 
 // Auth pages
-import LoginPage from './pages/auth/login.page';
-import RegisterPage from './pages/auth/register.page';
-import ForgotPasswordPage from './pages/auth/forgot-password.page';
-import ResetPasswordPage from './pages/auth/reset-password.page';
+import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from './pages/auth';
 
 // Define routes
 const router = createBrowserRouter([
@@ -67,8 +64,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App() {
+export const App: React.FC = () => {
   return <RouterProvider router={router} />;
-}
-
-export default App;
+};
