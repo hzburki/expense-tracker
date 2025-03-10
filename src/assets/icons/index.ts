@@ -21,3 +21,5 @@ export { CurrencyIcon } from './currency.icon';
 export { LabelIcon } from './label.icon';
 export { ChevronDownIcon } from './chevron-down.icon';
 export { CalendarIcon } from './calendar.icon';
+export { AlertDangerIcon } from './alert-danger.icon';
+export { AlertSuccessIcon } from './alert-success.icon';

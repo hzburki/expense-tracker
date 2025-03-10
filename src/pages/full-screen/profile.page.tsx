@@ -4,6 +4,8 @@ import { FullScreenLayout } from '@/layouts';
 import { Card, InputField, Button, DOBField } from '@/components/ui';
 import { SelectField } from '@/components/ui/select-field.ui';
 import { AvatarSelector } from '@/components/common';
+import { ChangePasswordSection } from './change-password.comp';
+import { DeleteAccountSection } from './delete-account.comp';
 import { z } from 'zod';
 
 const profileSchema = z.object({
@@ -66,61 +68,73 @@ export const ProfilePage = () => {
         </div>
 
         <Card overflow="visible">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="flex justify-center">
-              <AvatarSelector
-                value={avatarSeed}
-                style={avatarStyle}
-                onChange={(seed, style) => {
-                  setValue('avatarSeed', seed);
-                  setValue('avatarStyle', style);
-                }}
-              />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900">Personal Information</h2>
+              <p className="mt-1 text-sm text-gray-500">Update your personal details.</p>
             </div>
 
-            <InputField
-              label="Full Name"
-              name="name"
-              placeholder="Enter your full name"
-              register={register}
-              error={errors.name?.message}
-            />
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div className="flex justify-center">
+                <AvatarSelector
+                  value={avatarSeed}
+                  style={avatarStyle}
+                  onChange={(seed, style) => {
+                    setValue('avatarSeed', seed);
+                    setValue('avatarStyle', style);
+                  }}
+                />
+              </div>
 
-            <InputField
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Enter your email"
-              register={register}
-              error={errors.email?.message}
-            />
-
-            <div className="grid gap-6 sm:grid-cols-2">
-              <SelectField
-                label="Gender"
-                name="gender"
-                options={genderOptions}
+              <InputField
+                label="Full Name"
+                name="name"
+                placeholder="Enter your full name"
                 register={register}
-                setValue={setValue}
-                value={gender}
-                error={errors.gender?.message}
-                placeholder="Select gender"
+                error={errors.name?.message}
               />
 
-              <DOBField
-                name="dateOfBirth"
+              <InputField
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
                 register={register}
-                error={errors.dateOfBirth?.message}
+                error={errors.email?.message}
               />
-            </div>
 
-            <div className="flex justify-end">
-              <Button type="submit" isLoading={isSubmitting}>
-                Save Changes
-              </Button>
-            </div>
-          </form>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <SelectField
+                  label="Gender"
+                  name="gender"
+                  options={genderOptions}
+                  register={register}
+                  setValue={setValue}
+                  value={gender}
+                  error={errors.gender?.message}
+                  placeholder="Select gender"
+                />
+
+                <DOBField
+                  label="Date of Birth"
+                  name="dateOfBirth"
+                  register={register}
+                  setValue={setValue}
+                  error={errors.dateOfBirth?.message}
+                />
+              </div>
+
+              <div className="flex justify-end">
+                <Button type="submit" isLoading={isSubmitting}>
+                  Save Changes
+                </Button>
+              </div>
+            </form>
+          </div>
         </Card>
+
+        <ChangePasswordSection />
+        <DeleteAccountSection />
       </div>
     </FullScreenLayout>
   );
