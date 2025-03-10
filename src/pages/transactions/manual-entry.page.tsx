@@ -2,7 +2,7 @@ import { FullScreenLayout } from '@/layouts/full-screen.layout';
 
 export const ManualEntryPage = () => {
   return (
-    <FullScreenLayout>
+    <FullScreenLayout screen="Manual Entry" description="">
       <div>Manual Entry</div>
     </FullScreenLayout>
   );
