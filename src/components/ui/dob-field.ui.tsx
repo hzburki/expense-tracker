@@ -100,7 +100,7 @@ export const DOBField = <T extends FieldValues>({
         scrollableYearDropdown
         customInput={
           <CustomInput
-            className={`h-10 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 placeholder:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''} ${className}`}
+            className={`h-10 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 placeholder:text-gray-500 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 ${error ? 'border-red-500' : ''} ${className}`}
             onClear={handleClear}
             hasValue={!!selectedDate}
           />
@@ -109,7 +109,7 @@ export const DOBField = <T extends FieldValues>({
         calendarClassName="shadow-xl border border-gray-200 rounded-xl bg-white font-inter"
         dayClassName={() => 'hover:bg-gray-100'}
         weekDayClassName={() => 'text-gray-500'}
-        className="rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 focus:outline-none"
+        className="rounded-lg border border-gray-300"
         showPopperArrow={false}
         popperClassName="z-50"
         popperPlacement="bottom-start"

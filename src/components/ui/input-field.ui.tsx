@@ -33,7 +33,7 @@ export const InputField = <T extends FieldValues>({
         type={type}
         placeholder={placeholder}
         {...register(name)}
-        className={`h-10 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 placeholder:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''} ${className}`}
+        className={`h-10 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 placeholder:text-gray-500 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 ${error ? 'border-red-500' : ''} ${className}`}
         {...props}
       />
       {error && <p className="text-sm text-red-600">{error}</p>}
