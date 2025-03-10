@@ -51,7 +51,7 @@ export const DOBField = <T extends FieldValues>({
           onChange={handleChange}
           onBlur={registerRest.onBlur}
           name={registerRest.name}
-          className={`h-10 w-full appearance-none rounded-lg border border-gray-300 px-4 text-sm [color-scheme:light] focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 focus:outline-none [&::-webkit-calendar-picker-indicator]:hidden ${hasValue ? 'text-gray-900' : 'text-gray-500'} ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''} ${className}`}
+          className={`h-10 w-full appearance-none rounded-lg border border-gray-300 px-4 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 focus:outline-none [&::-webkit-calendar-picker-indicator]:hidden ${hasValue ? 'text-gray-900' : 'text-gray-500'} ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''} ${className}`}
         />
         <button
           type="button"
