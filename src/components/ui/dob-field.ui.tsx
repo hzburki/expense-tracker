@@ -106,7 +106,10 @@ export const DOBField = <T extends FieldValues>({
           />
         }
         wrapperClassName="w-full"
-        calendarClassName="shadow-lg border border-gray-200 rounded-lg bg-white"
+        calendarClassName="shadow-xl border border-gray-200 rounded-xl bg-white font-inter"
+        dayClassName={() => 'hover:bg-gray-100'}
+        weekDayClassName={() => 'text-gray-500'}
+        className="rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 focus:outline-none"
         showPopperArrow={false}
         popperClassName="z-50"
         popperPlacement="bottom-start"
