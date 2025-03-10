@@ -19,6 +19,7 @@ import { ProfilePage } from '@/pages/full-screen';
 
 // Auth pages
 import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from './pages/auth';
+import { ManualEntryPage, RecieptUploadPage, VoiceNotePage } from './pages/transactions';
 
 // Define routes
 const router = createBrowserRouter([
@@ -88,6 +89,19 @@ const router = createBrowserRouter([
   {
     path: '/reset-password',
     element: <ResetPasswordPage />,
+  },
+  // Transaction Routes
+  {
+    path: '/transactions/manual',
+    element: <ManualEntryPage />,
+  },
+  {
+    path: '/transactions/voice',
+    element: <VoiceNotePage />,
+  },
+  {
+    path: '/transactions/upload',
+    element: <RecieptUploadPage />,
   },
 ]);
 
