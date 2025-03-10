@@ -1,5 +1,5 @@
+import { X } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CloseIcon } from '@/assets/icons';
 
 interface CloseButtonProps {
   to?: string;
@@ -26,7 +26,7 @@ export const CloseButton = ({ to, size = 'lg', onClick, className = '' }: CloseB
   if (to) {
     return (
       <Link to={to} className={`${commonClasses} ${sizeClasses[size].button} ${className}`}>
-        <CloseIcon className={`${sizeClasses[size].icon} text-gray-700`} />
+        <X className={`${sizeClasses[size].icon} text-gray-700`} />
       </Link>
     );
   }
@@ -36,7 +36,7 @@ export const CloseButton = ({ to, size = 'lg', onClick, className = '' }: CloseB
       onClick={onClick}
       className={`${commonClasses} ${sizeClasses[size].button} ${className}`}
     >
-      <CloseIcon className={`${sizeClasses[size].icon} text-gray-700`} />
+      <X className={`${sizeClasses[size].icon} text-gray-700`} />
     </button>
   );
 };

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Avatar } from '@/components/ui';
-import { ProfileIcon, LogoutIcon } from '@/assets/icons';
-
+import { CircleUserRound, LogOut } from 'lucide-react';
 interface ProfileProps {
   userName?: string;
   avatarUrl?: string;
@@ -21,12 +20,12 @@ export const Profile = ({ userName = 'John Doe', avatarUrl }: ProfileProps) => {
             to="/profile"
             className="flex h-[60px] flex-col items-center justify-center rounded-xl bg-white px-2 text-gray-600 shadow-sm transition-all hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200"
           >
-            <ProfileIcon className="mb-1.5 h-6 w-6" />
+            <CircleUserRound className="mb-1.5 h-6 w-6" />
             <span className="text-sm font-medium">Profile</span>
           </Link>
 
           <button className="flex h-[60px] flex-col items-center justify-center rounded-xl bg-white px-2 text-red-600 shadow-sm transition-all hover:bg-red-50 active:bg-red-100">
-            <LogoutIcon className="mb-1.5 h-6 w-6" />
+            <LogOut className="mb-1.5 h-6 w-6" />
             <span className="text-sm font-medium">Logout</span>
           </button>
         </div>

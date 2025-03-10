@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Avatar, IconButton } from '@/components/ui';
-import { RefreshIcon, UploadIcon } from '@/assets/icons';
+import { RefreshCcw, Upload } from 'lucide-react';
 
 interface AvatarSelectorProps {
   value: string;
@@ -61,14 +61,14 @@ export const AvatarSelector: React.FC<AvatarSelectorProps> = ({
           onClick={handleRegenerate}
           className="absolute -right-2 -bottom-2"
         >
-          <RefreshIcon className="h-4 w-4" />
+          <RefreshCcw className="h-4 w-4" />
         </IconButton>
         <IconButton
           variant="primary"
           onClick={handleFileUpload}
           className="absolute -top-2 -right-2"
         >
-          <UploadIcon className="h-4 w-4" />
+          <Upload className="h-4 w-4" />
         </IconButton>
         <input
           type="file"

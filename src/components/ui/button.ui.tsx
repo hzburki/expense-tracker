@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'danger';
+  variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'link';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
   fullWidth?: boolean;
@@ -25,6 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
     secondary: 'bg-gray-600 text-white hover:bg-gray-700 border border-transparent',
     outline: 'bg-white text-blue-600 hover:bg-blue-50 border border-blue-600',
     danger: 'bg-red-600 text-white hover:bg-red-700 border border-transparent',
+    link: 'bg-transparent text-blue-600 hover:text-blue-700 border-none p-0',
   };
 
   const sizes = {
@@ -35,7 +36,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${className}`}
+      className={`${variant !== 'link' ? baseStyles : ''} ${variants[variant]} ${variant !== 'link' ? sizes[size] : ''} ${fullWidth ? 'w-full' : ''} ${className}`}
       disabled={isLoading || disabled}
       {...props}
     >

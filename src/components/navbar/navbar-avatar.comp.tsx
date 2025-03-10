@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown, DropdownItem } from '@/components/ui';
-import { ProfileIcon, LogoutIcon } from '@/assets/icons';
 import { NavbarTrigger } from './navbar-trigger.comp';
+import { Dropdown, DropdownItem } from '@/components/ui';
+import { CircleUserRound, LogOut } from 'lucide-react';
 
 const dropdownItems = [
   {
     type: 'link',
     label: 'Profile',
     to: '/profile',
-    icon: <ProfileIcon className="mr-2 h-4 w-4" />,
+    icon: <CircleUserRound className="mr-2 h-4 w-4" />,
   },
   {
     type: 'button',
     label: 'Logout',
-    icon: <LogoutIcon className="mr-2 h-4 w-4 text-red-500" />,
+    icon: <LogOut className="mr-2 h-4 w-4 text-red-500" />,
     className: 'text-red-600 hover:bg-red-50',
   },
 ];

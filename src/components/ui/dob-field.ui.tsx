@@ -1,5 +1,5 @@
 import { UseFormRegister, FieldValues, Path, UseFormSetValue, PathValue } from 'react-hook-form';
-import { CalendarIcon, CloseIcon } from '@/assets/icons';
+import { Calendar, X } from 'lucide-react';
 import { forwardRef, useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -40,7 +40,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
         onClick={hasValue ? onClear : onClick}
         className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer p-1 text-gray-400 hover:text-gray-500"
       >
-        {hasValue ? <CloseIcon className="h-5 w-5" /> : <CalendarIcon className="h-5 w-5" />}
+        {hasValue ? <X className="h-5 w-5" /> : <Calendar className="h-5 w-5" />}
       </button>
     </div>
   )

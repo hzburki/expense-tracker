@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { UseFormRegister, UseFormSetValue, Path, FieldValues, PathValue } from 'react-hook-form';
-import { ChevronDownIcon } from '@/assets/icons';
+import { ChevronDown } from 'lucide-react';
 import { Dropdown, DropdownItem } from './dropdown.ui';
+import { UseFormRegister, UseFormSetValue, Path, FieldValues, PathValue } from 'react-hook-form';
 
 interface Option {
   value: string;
@@ -38,7 +38,7 @@ export const SelectField = <T extends FieldValues>({
   register(name);
 
   return (
-    <div className={`space-y-2 ${className}`}>
+    <div className={`group space-y-2 ${className}`}>
       <label htmlFor={name} className="block text-sm font-medium text-gray-700">
         {label}
       </label>
@@ -56,7 +56,7 @@ export const SelectField = <T extends FieldValues>({
             <span className={selectedOption ? 'text-gray-900' : 'text-gray-500'}>
               {selectedOption?.label || placeholder}
             </span>
-            <ChevronDownIcon className="h-5 w-5 text-gray-400" />
+            <ChevronDown className="h-6 w-6 text-gray-400 group-hover:text-gray-500" />
           </button>
         }
       >

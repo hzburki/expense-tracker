@@ -1,18 +1,19 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Profile } from './profile.comp';
+
 import {
-  DashboardIcon,
-  AccountsIcon,
-  ExpensesIcon,
-  AnalyticsIcon,
-  ImportsIcon,
-  ReportsIcon,
-  BudgetsIcon,
-  TemplatesIcon,
-  TagIcon,
-  CurrencyIcon,
-  LabelIcon,
-} from '@/assets/icons';
+  LayoutDashboard,
+  Wallet,
+  ArrowRightLeft,
+  Goal,
+  ChartNoAxesCombined,
+  Coins,
+  Download,
+  Tags,
+  Banknote,
+  NotebookPen,
+  Tag,
+} from 'lucide-react';
 
 interface MenuItem {
   label: string;
@@ -36,37 +37,37 @@ const menuSections: MenuSection[] = [
       {
         label: 'Dashboard',
         path: '/',
-        icon: <DashboardIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <LayoutDashboard className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Accounts',
         path: '/accounts',
-        icon: <AccountsIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <Wallet className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Expenses',
         path: '/expenses',
-        icon: <ExpensesIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <ArrowRightLeft className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Analytics',
         path: '/analytics',
-        icon: <AnalyticsIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <ChartNoAxesCombined className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Goals',
         path: '/goals',
-        icon: <ReportsIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <Goal className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Budgets',
         path: '/budgets',
-        icon: <BudgetsIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <Coins className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Imports',
         path: '/imports',
-        icon: <ImportsIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <Download className="h-7 w-7 md:h-5 md:w-5" />,
       },
     ],
   },
@@ -76,22 +77,22 @@ const menuSections: MenuSection[] = [
       {
         label: 'Categories',
         path: '/categories',
-        icon: <TagIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <Tag className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Templates',
         path: '/templates',
-        icon: <TemplatesIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <NotebookPen className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Currencies',
         path: '/currencies',
-        icon: <CurrencyIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <Banknote className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Labels',
         path: '/labels',
-        icon: <LabelIcon className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <Tags className="h-7 w-7 md:h-5 md:w-5" />,
       },
     ],
   },
