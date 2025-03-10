@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { CloseIcon } from '@/assets/icons';
+import { CloseButton } from '@/components/ui';
 
 interface DrawerProps {
   isOpen: boolean;
@@ -26,12 +26,9 @@ export const Drawer = ({ isOpen, onClose, children, position = 'left' }: DrawerP
         } ${isOpen ? 'translate-x-0' : position === 'left' ? '-translate-x-full' : 'translate-x-full'}`}
       >
         {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 rounded-full p-2 text-gray-500 hover:bg-gray-100"
-        >
-          <CloseIcon className="h-6 w-6" />
-        </button>
+        <div className="absolute top-4 right-4">
+          <CloseButton size="sm" onClick={onClose} />
+        </div>
 
         {/* Content */}
         <div className="h-full overflow-y-auto">{children}</div>

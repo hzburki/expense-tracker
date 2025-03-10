@@ -57,19 +57,19 @@ const router = createBrowserRouter([
   },
   // Settings Routes
   {
-    path: '/settings/categories',
+    path: '/categories',
     element: <CategoriesPage />,
   },
   {
-    path: '/settings/templates',
+    path: '/templates',
     element: <TemplatesPage />,
   },
   {
-    path: '/settings/currencies',
+    path: '/currencies',
     element: <CurrenciesPage />,
   },
   {
-    path: '/settings/labels',
+    path: '/labels',
     element: <LabelsPage />,
   },
   // Auth Routes

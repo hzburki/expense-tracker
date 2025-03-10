@@ -9,3 +9,4 @@ export { Link } from './link.ui';
 export { Drawer } from './drawer.ui';
 export { SelectField } from './select-field.ui';
 export { Alert } from './alert.ui';
+export { CloseButton } from './close-button.ui';
