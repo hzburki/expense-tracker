@@ -1,6 +1,6 @@
 import { AccountCard } from './account-card';
 import { AddAccountCard } from './add-account-card';
-import { CreditCard, PiggyBank, Wallet, Eye } from 'lucide-react';
+import { CreditCard, PiggyBank, Wallet, Settings } from 'lucide-react';
 import { IconButton } from '../ui';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,11 +61,11 @@ export const AccountsSection = () => {
           onClick={() => navigate('/accounts')}
           className="text-gray-500 hover:text-gray-700"
         >
-          <Eye className="h-6 w-6" />
+          <Settings className="h-6 w-6" />
         </IconButton>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-5">
+      <div className="grid grid-cols-3 gap-1 sm:grid-cols-4 sm:gap-2 lg:grid-cols-5">
         {MOCK_ACCOUNTS.map(account => (
           <AccountCard key={account.name} {...account} />
         ))}
