@@ -1,10 +1,17 @@
+import { z } from 'zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Card, Link, InputField } from '@/components/ui';
 import { AuthLayout } from '@/layouts';
-import { loginSchema, type LoginFormData } from './login.schema';
 import { useNavigate } from 'react-router-dom';
+
+const loginSchema = z.object({
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+});
+
+export type LoginFormData = z.infer<typeof loginSchema>;
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();

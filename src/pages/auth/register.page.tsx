@@ -1,11 +1,32 @@
+import { z } from 'zod';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { InputField, Button, Card, Link } from '@/components/ui';
 import { AuthLayout } from '@/layouts';
 import { AvatarSelector, PasswordCriteria } from '@/components/common';
-import { registerSchema, type RegisterFormData } from './register.schema';
 import { useNavigate } from 'react-router-dom';
+
+const registerSchema = z
+  .object({
+    name: z.string().min(2, 'Name must be at least 2 characters'),
+    email: z.string().email('Invalid email address'),
+    avatarSeed: z.string(),
+    avatarStyle: z.string(),
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .regex(/[A-Z]/, 'Password must contain at least one capital letter')
+      .regex(/\d/, 'Password must contain at least one number')
+      .regex(/[!@#$%^&*(),.?":{}|<>]/, 'Password must contain at least one special character'),
+    confirmPassword: z.string(),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
+
+export type RegisterFormData = z.infer<typeof registerSchema>;
 
 export const RegisterPage: React.FC = () => {
   const navigate = useNavigate();

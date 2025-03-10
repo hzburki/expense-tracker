@@ -103,7 +103,8 @@ export const DeleteAccountSection = () => {
               Cancel
             </Button>
             <Button type="submit" variant="danger" size="md" isLoading={isSubmitting}>
-              Permanently Delete Account
+              <span className="hidden sm:inline">Permanently Delete Account</span>
+              <span className="sm:hidden">Delete</span>
             </Button>
           </div>
         </form>

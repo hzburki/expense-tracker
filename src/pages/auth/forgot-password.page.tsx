@@ -1,9 +1,15 @@
+import { z } from 'zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
 import { InputField } from '@/components/ui/input-field.ui';
-import { forgotPasswordSchema, type ForgotPasswordFormData } from './forgot-password.schema';
+
+const forgotPasswordSchema = z.object({
+  email: z.string().email('Invalid email address'),
+});
+
+export type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 
 export const ForgotPasswordPage: React.FC = () => {
   const {

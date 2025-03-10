@@ -13,7 +13,7 @@ export const FullScreenLayout = ({ children }: FullScreenLayoutProps) => {
         <div className="absolute top-4 right-4 sm:right-6 lg:right-8">
           <Link
             to="/"
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm transition-all hover:bg-gray-50 active:bg-gray-100"
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition-all hover:bg-gray-50 active:bg-gray-100"
           >
             <CloseIcon className="h-10 w-10 text-gray-700" />
           </Link>

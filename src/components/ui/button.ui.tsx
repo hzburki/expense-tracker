@@ -21,10 +21,10 @@ export const Button: React.FC<ButtonProps> = ({
     'rounded-xl font-medium cursor-pointer transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50';
 
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-600 text-white hover:bg-gray-700',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 border border-transparent',
+    secondary: 'bg-gray-600 text-white hover:bg-gray-700 border border-transparent',
+    outline: 'bg-white text-blue-600 hover:bg-blue-50 border border-blue-600',
+    danger: 'bg-red-600 text-white hover:bg-red-700 border border-transparent',
   };
 
   const sizes = {
