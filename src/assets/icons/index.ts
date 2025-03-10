@@ -23,3 +23,7 @@ export { ChevronDownIcon } from './chevron-down.icon';
 export { CalendarIcon } from './calendar.icon';
 export { AlertDangerIcon } from './alert-danger.icon';
 export { AlertSuccessIcon } from './alert-success.icon';
+export { ArrowRightIcon } from './arrow-right.icon';
+export { CreditCardIcon } from './credit-card.icon';
+export { PiggyBankIcon } from './piggy-bank.icon';
+export { WalletIcon } from './wallet.icon';

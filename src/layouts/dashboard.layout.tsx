@@ -34,7 +34,9 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </Drawer>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-y-auto bg-gray-100">{children}</main>
+        <main className="flex-1 overflow-y-auto bg-gray-100">
+          <div className="mx-auto max-w-7xl p-4 sm:px-6 lg:px-8">{children}</div>
+        </main>
       </div>
     </div>
   );
