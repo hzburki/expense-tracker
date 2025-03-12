@@ -1,6 +1,7 @@
 import { DashboardLayout } from '@/layouts';
 import { useState, useRef, useEffect } from 'react';
 import { Send, Paperclip, Mic, Square, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { ChatBackground } from '@/components/ui/chat-background.ui';
 
 // Web Speech API types
 interface SpeechRecognitionErrorEvent extends Event {
@@ -47,10 +48,12 @@ declare global {
   }
 }
 
+type MessageType = 'text' | 'image' | 'video' | 'audio' | 'file' | 'transaction' | 'system';
+
 interface Message {
   id: string;
   content: string;
-  type: 'text' | 'image' | 'video' | 'audio' | 'file' | 'transaction';
+  type: MessageType;
   timestamp: Date;
   url?: string;
   transactionInfo?: {
@@ -72,7 +75,53 @@ interface TransactionResponse {
 }
 
 export const DashboardPage = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: 'welcome',
+      content:
+        '👋 Welcome to your Expense Assistant!\n\n' +
+        'I can help you track expenses in multiple ways:\n' +
+        '💬 Send messages like "Spent $25 on lunch"\n' +
+        '📸 Upload receipt images\n' +
+        '🎙️ Record voice notes\n' +
+        '📄 Drop PDF files\n\n' +
+        'Try any method to get started!',
+      type: 'system',
+      timestamp: new Date(),
+    },
+    {
+      id: 'example',
+      content: 'I spent $42.50 on groceries at Walmart',
+      type: 'text',
+      timestamp: new Date(),
+    },
+    {
+      id: 'transaction-example',
+      content:
+        'Transaction added:\n' +
+        'Amount: $42.50\n' +
+        'Category: Groceries\n' +
+        'Description: Walmart purchase',
+      type: 'transaction',
+      timestamp: new Date(),
+      transactionInfo: {
+        amount: 42.5,
+        category: 'Groceries',
+        description: 'Walmart purchase',
+        date: new Date(),
+      },
+    },
+    {
+      id: 'tip',
+      content:
+        '💡 Pro Tip: For better categorization, include details like:\n' +
+        '• Store name (e.g., "Walmart", "Starbucks")\n' +
+        '• Category (e.g., "groceries", "coffee")\n' +
+        '• Date (e.g., "today", "yesterday")',
+      type: 'system',
+      timestamp: new Date(),
+    },
+  ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [audioPermission, setAudioPermission] = useState<boolean | null>(null);
@@ -195,7 +244,7 @@ export const DashboardPage = () => {
         if (saveResponse.success) {
           const transactionMessage: Message = {
             id: (Date.now() + 1).toString(),
-            content: `Transaction recorded:\nAmount: $${llmResponse.data.amount}\nCategory: ${llmResponse.data.category}\nDescription: ${llmResponse.data.description}`,
+            content: `Transaction recorded:\nAmount: $${llmResponse.data.amount.toFixed(2)}\nCategory: ${llmResponse.data.category}\nDescription: ${llmResponse.data.description}`,
             type: 'transaction',
             timestamp: new Date(),
             transactionInfo: llmResponse.data,
@@ -357,7 +406,7 @@ export const DashboardPage = () => {
         onDragLeave={() => setDragActive(false)}
         onDrop={handleDrop}
       >
-        <div className="bg-white px-4 py-3 shadow-sm">
+        <div className="border-b border-gray-300 bg-white px-4 py-3 shadow-sm">
           <h1 className="text-xl font-semibold text-gray-900">Expense Assistant</h1>
           <p className="text-sm text-gray-500">
             Send messages, images, or voice notes to add transactions
@@ -366,52 +415,66 @@ export const DashboardPage = () => {
 
         <div
           ref={chatContainerRef}
-          className={`flex-1 space-y-4 overflow-y-auto p-4 ${
-            dragActive ? 'bg-[#2563eb]/5' : 'bg-[url("/chat-bg.png")] bg-repeat'
+          className={`relative flex-1 space-y-4 overflow-y-auto p-4 ${
+            dragActive ? 'bg-[#2563eb]/5' : 'bg-[#efeae2]'
           }`}
         >
+          <ChatBackground color="#667781" opacity={0.025} />
           {messages.map(message => (
             <div
               key={message.id}
-              className={`ml-auto flex max-w-[80%] flex-col rounded-lg p-3 text-white ${
-                message.type === 'transaction' ? 'bg-emerald-500' : 'bg-[#2563eb]'
+              className={`flex ${
+                message.type === 'transaction' || message.type === 'system'
+                  ? 'justify-center'
+                  : 'justify-end'
               }`}
             >
-              {message.type === 'text' && (
-                <p className="break-words">{formatMessageContent(message.content)}</p>
-              )}
-              {message.type === 'image' && (
-                <img
-                  src={message.url}
-                  alt={message.content}
-                  className="max-w-full cursor-pointer rounded-lg"
-                />
-              )}
-              {message.type === 'video' && (
-                <video
-                  src={message.url}
-                  controls
-                  className="max-w-full cursor-pointer rounded-lg"
-                />
-              )}
-              {message.type === 'audio' && (
-                <audio src={message.url} controls className="w-full cursor-pointer" />
-              )}
-              {message.type === 'file' && (
-                <div className="flex cursor-pointer items-center space-x-2">
-                  <Paperclip className="h-5 w-5" />
-                  <span className="break-all">{message.content}</span>
-                </div>
-              )}
-              {message.type === 'transaction' && (
-                <div className="flex cursor-pointer items-start space-x-2">
-                  <CheckCircle2 className="mt-1 h-5 w-5" />
-                  <span className="whitespace-pre-line">{message.content}</span>
-                </div>
-              )}
-              <span className="mt-1 self-end text-xs opacity-75">
-                {new Date(message.timestamp).toLocaleTimeString()}
-              </span>
+              <div
+                className={`relative max-w-[85%] rounded-lg p-3 ${
+                  message.type === 'transaction'
+                    ? 'bg-emerald-50 text-emerald-900'
+                    : message.type === 'system'
+                      ? 'bg-red-50 text-red-900'
+                      : 'bg-[#d9fdd3] text-gray-900'
+                }`}
+              >
+                {' '}
+                {message.type === 'text' && (
+                  <p className="break-words">{formatMessageContent(message.content)}</p>
+                )}
+                {message.type === 'image' && (
+                  <img
+                    src={message.url}
+                    alt={message.content}
+                    className="max-w-full cursor-pointer rounded-lg"
+                  />
+                )}
+                {message.type === 'video' && (
+                  <video
+                    src={message.url}
+                    controls
+                    className="max-w-full cursor-pointer rounded-lg"
+                  />
+                )}
+                {message.type === 'audio' && (
+                  <audio src={message.url} controls className="w-full cursor-pointer" />
+                )}
+                {message.type === 'file' && (
+                  <div className="flex cursor-pointer items-center space-x-2">
+                    <Paperclip className="h-5 w-5" />
+                    <span className="break-all">{message.content}</span>
+                  </div>
+                )}
+                {message.type === 'transaction' && (
+                  <div className="flex cursor-pointer items-start space-x-2">
+                    <CheckCircle2 className="mt-1 h-5 w-5" />
+                    <span className="whitespace-pre-line">{message.content}</span>
+                  </div>
+                )}
+                <span className="mt-1 self-end text-xs opacity-75">
+                  {new Date(message.timestamp).toLocaleTimeString()}
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -442,7 +505,7 @@ export const DashboardPage = () => {
           </div>
         )}
 
-        <div className="border-t bg-white px-4 py-3">
+        <div className="border-t border-gray-300 bg-white px-4 py-3 shadow-sm">
           <div className="flex items-center space-x-2">
             <input
               type="file"
