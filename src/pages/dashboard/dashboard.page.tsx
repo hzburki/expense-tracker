@@ -1,10 +1,11 @@
 import { DashboardLayout } from '@/layouts';
-import { AccountsSection } from '@/components/accounts/accounts-section';
 
 export const DashboardPage = () => {
   return (
     <DashboardLayout>
-      <AccountsSection />
+      <div className="h-full">
+        <h1 className="text-4xl font-bold text-gray-900">Dashboard</h1>
+      </div>
     </DashboardLayout>
   );
 };

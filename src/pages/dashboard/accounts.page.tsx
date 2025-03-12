@@ -1,15 +1,10 @@
+import { AccountsSection } from '@/components/accounts/accounts-section';
 import { DashboardLayout } from '@/layouts';
 
 export const AccountsPage = () => {
   return (
     <DashboardLayout>
-      <div className="mt-8 text-center">
-        <h2 className="text-4xl font-bold text-gray-900">Accounts</h2>
-        <p className="mt-4 text-gray-500">
-          We're building a powerful account management system where you'll be able to link your bank
-          accounts, track balances, and manage your financial accounts seamlessly.
-        </p>
-      </div>
+      <AccountsSection />
     </DashboardLayout>
   );
 };
