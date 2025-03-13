@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Card, InputField, Button, DOBField } from '@/components/ui';
-import { SelectField } from '@/components/ui/select-field.ui';
+import { SelectField, Card, InputField, Button, DOBField } from '@/components/ui';
 import { AvatarSelector } from '@/components/common';
 import { z } from 'zod';
 

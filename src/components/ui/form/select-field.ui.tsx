@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { Dropdown, DropdownItem } from './dropdown.ui';
+import { Dropdown, DropdownItem } from '../dropdown.ui';
 import { UseFormRegister, UseFormSetValue, Path, FieldValues, PathValue } from 'react-hook-form';
 
 interface Option {

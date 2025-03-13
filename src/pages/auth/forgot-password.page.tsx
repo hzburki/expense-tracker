@@ -3,7 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
-import { InputField } from '@/components/ui/input-field.ui';
+import { InputField } from '@/components/ui/form/input-field.ui';
 
 const forgotPasswordSchema = z.object({
   email: z.string().email('Invalid email address'),

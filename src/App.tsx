@@ -1,13 +1,16 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+// Home Page
+import { HomePage } from './pages/home.page';
+
 // Main pages
 import {
-  DashboardPage,
-  ExpensesPage,
-  AccountsPage,
+  ChatPage,
+  GoalsPage,
   BudgetsPage,
   ImportsPage,
-  GoalsPage,
+  ExpensesPage,
+  AccountsPage,
   AnalyticsPage,
 } from '@/pages/dashboard';
 
@@ -25,7 +28,11 @@ import { ManualEntryPage, RecieptUploadPage, VoiceNotePage } from './pages/trans
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <DashboardPage />,
+    element: <HomePage />,
+  },
+  {
+    path: '/chat',
+    element: <ChatPage />,
   },
   {
     path: '/expenses',
