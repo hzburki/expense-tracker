@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Main pages
 import {
-  DashboardPage,
+  ChatPage,
   ExpensesPage,
   AccountsPage,
   BudgetsPage,
@@ -25,7 +25,7 @@ import { ManualEntryPage, RecieptUploadPage, VoiceNotePage } from './pages/trans
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <DashboardPage />,
+    element: <ChatPage />,
   },
   {
     path: '/expenses',
