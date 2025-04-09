@@ -16,6 +16,7 @@ import { CategoriesPage, TemplatesPage, CurrenciesPage, LabelsPage } from '@/pag
 
 // Full Screen pages
 import { ProfilePage } from '@/pages/full-screen';
+import { AccountsManagementPage } from '@/pages/full-screen/accounts/accounts.page';
 
 // Auth pages
 import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from './pages/auth';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: '/accounts',
     element: <AccountsPage />,
+  },
+  {
+    path: '/accounts/manage',
+    element: <AccountsManagementPage />,
   },
   {
     path: '/analytics',

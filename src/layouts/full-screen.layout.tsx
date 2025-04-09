@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { IconButton } from '@/components/ui';
 
 interface FullScreenLayoutProps {
   children: React.ReactNode;
@@ -8,6 +9,8 @@ interface FullScreenLayoutProps {
 }
 
 export const FullScreenLayout = ({ children, screen, description }: FullScreenLayoutProps) => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen w-full bg-gray-100">
       <div className="relative mx-auto max-w-3xl px-4 py-4 sm:px-6 lg:px-8">
@@ -17,12 +20,13 @@ export const FullScreenLayout = ({ children, screen, description }: FullScreenLa
             <p className="mt-1 text-sm text-gray-500">{description}</p>
           </div>
           {/* Close Button */}
-          <Link
-            to="/"
+          <IconButton
+            variant="link"
+            onClick={() => navigate(-1)}
             className="pointer-cursor flex h-14 w-14 items-center justify-center transition-all"
           >
             <X className="h-12 w-12 text-gray-700" />
-          </Link>
+          </IconButton>
         </div>
 
         {/* Content */}

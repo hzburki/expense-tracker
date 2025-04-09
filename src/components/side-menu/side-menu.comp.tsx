@@ -2,7 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Profile } from './profile.comp';
 
 import {
-  LayoutDashboard,
   Wallet,
   ArrowRightLeft,
   Goal,
@@ -13,6 +12,7 @@ import {
   Banknote,
   NotebookPen,
   Tag,
+  MessageCircle,
 } from 'lucide-react';
 
 interface MenuItem {
@@ -35,9 +35,9 @@ const menuSections: MenuSection[] = [
   {
     items: [
       {
-        label: 'Dashboard',
+        label: 'Chat',
         path: '/',
-        icon: <LayoutDashboard className="h-7 w-7 md:h-5 md:w-5" />,
+        icon: <MessageCircle className="h-7 w-7 md:h-5 md:w-5" />,
       },
       {
         label: 'Accounts',
